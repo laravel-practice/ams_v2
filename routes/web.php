@@ -31,5 +31,6 @@ Route::get('admin/product/create', 					['uses' => 'Admin\ProductController@crea
 Route::get('admin/employee', 					['as' => 'admin.employee', 'uses' => 'Admin\EmployeeController@index']);
 
 Route::get('admin/employee/create', 					['as' => 'admin.employee.create', 'uses' => 'Admin\EmployeeController@create']);
+Route::get('admin/employee/store', 					['as' => 'admin.employee.store', 'uses' => 'Admin\EmployeeController@store']);
 
 

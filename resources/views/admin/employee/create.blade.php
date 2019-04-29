@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="ibox-content">
-        <form method="POST" action="" accept-charset="UTF-8" class="form" enctype="multipart/form-data" id="employee-post">
+        <form method="POST" action="{{ url('admin/employee/store') }}" accept-charset="UTF-8" class="form" enctype="multipart/form-data" id="employee-post">
 			@csrf
             <div class="form-group  row">
                 <label for="employee_id" class="col-sm-1">Emp ID:</label>
