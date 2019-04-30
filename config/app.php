@@ -174,6 +174,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        
+        // laraver CKEditor Package,
+        Unisharp\Ckeditor\ServiceProvider::class,
 
     ],
 

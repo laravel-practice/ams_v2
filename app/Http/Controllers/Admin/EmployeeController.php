@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,11 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        return view('admin.employee.index');
+        $data=[];
+        $data['rows'] = Employee::all();
+        // dd($data);
+        // return view('admin.post.index', compact('data'));
+        return view('admin.employee.index', compact('data'));
     }
 
     /**
@@ -35,7 +40,18 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $row = $request->all();
+        // dd($row);
+        $row = new Employee();
+        $row->employee_id = $request->get('employee_id');
+        $row->name = $request->get('name');
+        $row->address = $request->get('address');
+        $row->email = $request->get('email');
+        $row->contact = $request->get('contact');
+        $row->gender = $request->get('gender');
+        $row->designation = $request->get('designation');
+        $row->save();
+        return redirect ('admin/employee');
     }
 
     /**
@@ -57,7 +73,10 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        // dd($id);
+        $data = [];
+        $data['row'] = Employee::find($id);
+        return view ('admin/employee/edit', compact('data'));
     }
 
     /**
@@ -69,7 +88,16 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $row = Employee::find($id);
+        $row->employee_id = $request->get('employee_id');
+        $row->name = $request->get('name');
+        $row->address = $request->get('address');
+        $row->email = $request->get('email');
+        $row->contact = $request->get('contact');
+        $row->gender = $request->get('gender');
+        $row->designation = $request->get('designation');
+        $row->save();
+        return redirect ('admin/employee');
     }
 
     /**
@@ -80,6 +108,8 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $row = Employee::find($id);
+        $row->delete();
+        return redirect ('admin/employee');
     }
 }

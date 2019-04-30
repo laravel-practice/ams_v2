@@ -22,7 +22,7 @@
                     </li>
 
                     <li class="active">
-                        <a href="layouts.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span></a>
+                        <a href="{{ url('admin/dashboard') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span></a>
                     </li>
 
                     <li>
@@ -30,7 +30,11 @@
                     </li>
 
                     <li>
-                        <a href="{{ route('admin.employee.create') }}"><i class="fa fa-users"></i> <span class="nav-label">Add Employee</span></a>
+                        <a href="{{ url('admin/post') }}"><i class="fa fa-users"></i> <span class="nav-label">Post</span></a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url('admin/product') }}"><i class="fa fa-users"></i> <span class="nav-label">Product</span></a>
                     </li>
 
                 </ul>
