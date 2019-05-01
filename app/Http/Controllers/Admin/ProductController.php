@@ -10,7 +10,10 @@ class ProductController extends Controller
 {
     public function index()
     {
-    	return view('admin.product.index');
+    	$data=[];
+        $data['rows'] = Product::all();
+        // dd($data);
+    	return view('admin.product.index', compact('data'));
     }
 
     public function create()
@@ -26,22 +29,31 @@ class ProductController extends Controller
         $row->title = $request->get('title');
         $row->description = $request->get('description');
         $row->save();
-        return redirect ('admin/product	');
+        return redirect ('admin/product');
     }
 
     public function edit($id)
     {
-
+    	$data = [];
+        $data['row'] = Product::find($id);
+        // return view ('admin/post/edit', compact('data'));
+    	return view('admin.product.edit', compact('data'));
     }
 
     public function update(Request $request, $id)
     {
-
+    	$row = Product::find($id);
+        $row->title=$request->get('title');
+        $row->description=$request->get('description');
+        $row->save();
+        return redirect ('admin/product');
     }
 
     public function destroy($id)
     {
-
+    	$row = Product::find($id);
+        $row->delete();
+        return redirect ('admin/product');
     }
 
 }

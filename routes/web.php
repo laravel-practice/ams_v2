@@ -39,6 +39,10 @@ Route::get('admin/product/create', 					['uses' => 'Admin\ProductController@crea
 
 Route::post('admin/product/store', 					['uses' => 'Admin\ProductController@store']);
 
+Route::get('admin/product/edit/{id}', 					['uses' => 'Admin\ProductController@edit']);
+Route::post('admin/product/update/{id}', 					['uses' => 'Admin\ProductController@update']);
+Route::get('admin/product/delete/{id}', 					['uses' => 'Admin\ProductController@destroy']);
+
 
 
 
@@ -51,3 +55,11 @@ Route::post('admin/employee/update/{id}', ['as' => 'admin.employee.update', 'use
 Route::get('admin/employee/delete/{id}', ['as' => 'admin.employee.delete', 'uses' => 'Admin\EmployeeController@destroy']);
 
 
+
+
+Route::group(['prefix' => 'admin/', 'as' => 'admin.', 'namespace' => 'Admin\\'], function (){
+	Route::get('store', ['as' => 'store', 'uses' => 'StoreController@index']);
+	Route::get('store/create', ['as' => 'store/create', 'uses' => 'StoreController@create']);
+	Route::post('store/store', ['as' => 'store/store', 'uses' => 'StoreController@store']);
+	Route::get('store/edit/{id}', ['as' => 'store/edit', 'uses' => 'StoreController@edit']);
+});

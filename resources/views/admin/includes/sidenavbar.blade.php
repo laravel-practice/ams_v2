@@ -37,6 +37,10 @@
                         <a href="{{ url('admin/product') }}"><i class="fa fa-users"></i> <span class="nav-label">Product</span></a>
                     </li>
 
+                    <li>
+                        <a href="{{ url('admin/store') }}"><i class="fa fa-users"></i> <span class="nav-label">Store</span></a>
+                    </li>
+
                 </ul>
             </div>
         </nav>
