@@ -17,16 +17,29 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth'], function(){
+	Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('admin/post', ['uses'=> 'Admin\PostController@index']);
+	Route::get('admin/post/create', ['uses'=> 'Admin\PostController@create']);
+	Route::post('admin/post/store', ['uses'=> 'Admin\PostController@store']);
+	Route::get('admin/post/edit/{id}', ['uses'=> 'Admin\PostController@edit']);
+	Route::post('admin/post/update/{id}', ['uses'=> 'Admin\PostController@update']);
+	Route::get('admin/post/delete/{id}', ['uses'=> 'Admin\PostController@destroy']);
 
 
+	// store data
+	Route::group(['prefix' => 'admin/', 'as' => 'admin.', 'namespace' => 'Admin\\'], function (){
+	Route::get('store', ['as' => 'store', 'uses' => 'StoreController@index']);
+	Route::get('store/create', ['as' => 'store/create', 'uses' => 'StoreController@create']);
+	Route::post('store/store', ['as' => 'store/store', 'uses' => 'StoreController@store']);
+	Route::get('store/edit/{id}', ['as' => 'store/edit', 'uses' => 'StoreController@edit']);
+	
+	Route::post('store/update/{id}', ['as' => 'store/update', 'uses' => 'StoreController@update']);
+	Route::get('store/delete/{id}', ['as' => 'store/delete', 'uses' => 'StoreController@destroy']);
+});
 
-Route::get('admin/post', ['uses'=> 'Admin\PostController@index']);
-Route::get('admin/post/create', ['uses'=> 'Admin\PostController@create']);
-Route::post('admin/post/store', ['uses'=> 'Admin\PostController@store']);
-Route::get('admin/post/edit/{id}', ['uses'=> 'Admin\PostController@edit']);
-Route::post('admin/post/update/{id}', ['uses'=> 'Admin\PostController@update']);
-Route::get('admin/post/delete/{id}', ['uses'=> 'Admin\PostController@destroy']);
+
+});
 
 
 
@@ -57,9 +70,3 @@ Route::get('admin/employee/delete/{id}', ['as' => 'admin.employee.delete', 'uses
 
 
 
-Route::group(['prefix' => 'admin/', 'as' => 'admin.', 'namespace' => 'Admin\\'], function (){
-	Route::get('store', ['as' => 'store', 'uses' => 'StoreController@index']);
-	Route::get('store/create', ['as' => 'store/create', 'uses' => 'StoreController@create']);
-	Route::post('store/store', ['as' => 'store/store', 'uses' => 'StoreController@store']);
-	Route::get('store/edit/{id}', ['as' => 'store/edit', 'uses' => 'StoreController@edit']);
-});

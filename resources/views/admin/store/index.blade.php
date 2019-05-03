@@ -15,12 +15,21 @@
         </tr>
     </thead>
     <tbody>
+
+    @if ($store_data['rows']->isNotEmpty())
+    @foreach($store_data['rows'] as $sn => $row)
         <tr>
-            <td>1</td>
-            <td>Veniam quod</td>
-            <td>Obcaecati</td>
-            <td class="text-center"><a class="btn btn-info btn-xs" href=""><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+            <td>{{ ++$sn }}</td>
+            <td>{{ $row->title }}</td>
+            <td>{!! ($row->description) !!}</td>
+            <td class="text-center"><a class="btn btn-info btn-xs" href="{{ url ('admin/store/edit',$row->id) }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="{{ url ('admin/store/delete',$row->id) }}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
         </tr>
+    @endforeach
+    @else
+        <tr>
+            <td>no data</td>
+        </tr>
+    @endif
                    
     </tbody>
 </table>

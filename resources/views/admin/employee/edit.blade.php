@@ -36,7 +36,7 @@
             <div class="form-group  row">
                 <label for="name" class="col-sm-1">Name:</label>
                 <div class="col-sm-6">
-                    <input class="form-control " value="{{ $data['row']->name }}" id="name" name="name" type="text">
+                    <input class="form-control " value="{{ $edit_data['row']->name }}" id="name" name="name" type="text">
                                                 </div>
             </div>
             <div class="form-group  row">

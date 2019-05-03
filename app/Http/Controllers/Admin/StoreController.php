@@ -14,10 +14,10 @@ class StoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    private $employee = null;
-    public function __construct(Employee $employee)
+    private $store;
+    public function __construct(Store $store)
     {
-        $this->employee = Employee();
+        $this->store = $store;
     }
 
     /**
@@ -27,7 +27,11 @@ class StoreController extends Controller
      */
     public function index()
     {
-        return view('admin.store.index');
+        $data=[];
+        $data['rows'] = $this->store::all();
+        // return view('admin.store.index', compact('data'));
+        // return view('admin.store.index');
+        return view('admin.store.index')->with('store_data', $data)->with('_title', 'Notice Listing');
     }
 
     /**
@@ -49,14 +53,12 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->except('_token');
-        dd($data);
-        // $row = new Store();
-        // // dd($request->all());
-        // $row->title = $request->get('title');
-        // $row->description = $request->get('description');
-        // $row->save();
-        // return redirect ('admin/product');
+
+        $this->store->title = $request->get('title');
+        $this->store->description = $request->get('description');
+        $this->store->save();
+        // return redirect ('admin/store');
+        return redirect()->route('admin.store');
     }
 
     /**
@@ -78,7 +80,11 @@ class StoreController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data=[];
+        $data['row'] = $this->store::find($id);
+        // return view('admin.store.index', compact('data'));
+        // return view('admin.store.index');
+        return view('admin.store.edit')->with('edit_data', $data);
     }
 
     /**
@@ -90,7 +96,7 @@ class StoreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
