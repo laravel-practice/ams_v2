@@ -13,6 +13,9 @@
         $('.textarea').ckeditor(); // if class is prefered.
     </script>
 
+    <!--  this is for datatable -->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
 	@yield('js')
 </body>
 </html>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 use App\Http\Controllers\Controller;
 
 class EmployeeController extends Controller
@@ -15,11 +16,18 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $data=[];
-        $data['rows'] = Employee::all();
+        // $data=[];
+        // $data['rows'] = Employee::all();
         // dd($data);
         // return view('admin.post.index', compact('data'));
         return view('admin.employee.index', compact('data'));
+    }
+
+    public function getUsers()
+    {
+                // $data=[];
+        // $data['rows'] = Employee::all();
+        return Datatables::of(Employee::query())->make(true);
     }
 
     /**

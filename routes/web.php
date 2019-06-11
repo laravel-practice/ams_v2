@@ -60,6 +60,16 @@ Route::get('admin/product/delete/{id}', 					['uses' => 'Admin\ProductController
 
 
 Route::get('admin/employee', 					['as' => 'admin.employee', 'uses' => 'Admin\EmployeeController@index']);
+Route::get('admin/employee', 					['as' => 'admin.employee', 'uses' => 'Admin\EmployeeController@getUsers']);
+
+// Route::get('admin/employee', 
+// 	['as' => 'admin.employee', 
+// 	'uses' => 'Admin\DatatablesController'],
+// 	[
+// 	'anyData'  => 'datatables.data',
+//     'getIndex' => 'datatables',
+// 	]
+// );
 
 Route::get('admin/employee/create', 					['as' => 'admin.employee.create', 'uses' => 'Admin\EmployeeController@create']);
 Route::post('admin/employee/store', 					['as' => 'admin.employee.store', 'uses' => 'Admin\EmployeeController@store']);
